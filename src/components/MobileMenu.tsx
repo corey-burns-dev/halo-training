@@ -1,18 +1,16 @@
 import { X, Zap } from "lucide-react";
 import type React from "react";
-import { Link } from "react-router-dom";
+import { useStore } from "@nanostores/react";
+import { $isMenuOpen } from "../store/cart";
 
 interface MobileMenuProps {
-  isOpen: boolean;
-  onClose: () => void;
   navItems: string[];
 }
 
-export const MobileMenu: React.FC<MobileMenuProps> = ({
-  isOpen,
-  onClose,
-  navItems,
-}) => {
+export const MobileMenu: React.FC<MobileMenuProps> = ({ navItems }) => {
+  const isOpen = useStore($isMenuOpen);
+  const onClose = () => $isMenuOpen.set(false);
+
   return (
     <div
       className={`fixed inset-0 z-[100] transition-opacity duration-300 lg:hidden ${isOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}
@@ -29,7 +27,11 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
         <div className="p-8 h-full flex flex-col">
           <div className="flex justify-between items-center mb-16">
             <div className="flex items-center gap-2">
-              <Zap size={32} className="text-brand-primary" fill="currentColor" />
+              <Zap
+                size={32}
+                className="text-brand-primary"
+                fill="currentColor"
+              />
               <span className="font-black italic text-3xl tracking-tighter uppercase">
                 AXIS.
               </span>
@@ -45,9 +47,9 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
 
           <nav className="flex flex-col gap-8">
             {navItems.map((item) => (
-              <Link
+              <a
                 key={item}
-                to={`/category/${item.toLowerCase()}`}
+                href={`/category/${item.toLowerCase()}`}
                 className="font-black italic text-4xl uppercase tracking-tighter text-white hover:text-brand-primary transition-colors flex items-center justify-between group"
               >
                 {item}
@@ -56,15 +58,15 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
                   className="opacity-0 group-hover:opacity-100 text-brand-primary transition-opacity"
                   fill="currentColor"
                 />
-              </Link>
+              </a>
             ))}
             <div className="mt-8 pt-8 border-t border-white/10">
-              <Link
-                to="/login"
+              <a
+                href="/login"
                 className="font-black italic text-2xl uppercase tracking-widest text-brand-secondary hover:text-brand-primary transition-colors"
               >
                 Login / Join
-              </Link>
+              </a>
             </div>
           </nav>
 

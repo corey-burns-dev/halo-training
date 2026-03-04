@@ -1,0 +1,47 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import ProductCard from "../../components/ProductCard.astro";
+import { gear } from "../../data";
+
+export function getStaticPaths() {
+  const categories = [
+    ...new Set(gear.map((item) => item.category.toLowerCase())),
+  ];
+  return categories.map((categoryId) => ({
+    params: { categoryId },
+  }));
+}
+
+const { categoryId } = Astro.params;
+
+const filteredGear = categoryId
+  ? gear.filter(
+      (item) => item.category.toLowerCase() === categoryId.toLowerCase(),
+    )
+  : gear;
+
+const title = categoryId ? categoryId : "All Gear";
+---
+
+<Layout title={title.toUpperCase()}>
+  <div class="pt-32 px-6 md:px-12 max-w-[1600px] mx-auto min-h-screen relative z-10 pb-32">
+    <div class="mb-16">
+      <h1 class="text-[4rem] md:text-[6rem] font-black italic uppercase tracking-tighter leading-none mb-4">
+        <span class="text-brand-primary uppercase">{title}</span>
+      </h1>
+      <div class="w-24 h-2 bg-brand-secondary transform -skew-x-20"></div>
+    </div>
+
+    {filteredGear.length === 0 ? (
+      <div class="text-white/50 font-bold text-xl uppercase tracking-widest">
+        No gear found in this category.
+      </div>
+    ) : (
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {filteredGear.map((item) => (
+          <ProductCard product={item} />
+        ))}
+      </div>
+    )}
+  </div>
+</Layout>

@@ -1,0 +1,44 @@
+---
+import { Zap } from "lucide-react";
+import { NavbarActions, MenuButton } from "./NavbarActions";
+
+const { navItems = ["Footwear", "Apparel", "Accessories", "Training"] } =
+  Astro.props;
+const pathname = Astro.url.pathname;
+---
+
+<nav class="fixed w-full top-0 px-6 py-4 flex justify-between items-center z-50 mix-blend-difference bg-transparent backdrop-blur-none border-b border-transparent">
+  <div class="flex items-center gap-8">
+    <MenuButton client:load />
+
+    <div class="hidden lg:flex gap-8">
+      {navItems.map((item) => (
+        <a
+          href={`/category/${item.toLowerCase()}`}
+          class={`font-black italic text-xl uppercase tracking-tighter text-white hover:text-brand-primary transition-colors relative group ${pathname.includes(item.toLowerCase()) ? "text-brand-primary" : ""}`}
+        >
+          {item}
+          <span
+            class={`absolute -bottom-2 -left-2 w-[calc(100%+16px)] h-2 bg-brand-primary transform -skew-x-20 transition-transform origin-left mix-blend-exclusion ${pathname.includes(item.toLowerCase()) ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"}`}
+          />
+        </a>
+      ))}
+    </div>
+  </div>
+
+  <a
+    href="/"
+    class="absolute left-1/2 -translate-x-1/2 flex items-center gap-2 group"
+  >
+    <Zap
+      size={32}
+      class="text-brand-primary animate-[pulse_2s_ease-in-out_infinite] group-hover:text-white transition-colors"
+      fill="currentColor"
+    />
+    <span class="font-black italic text-3xl md:text-4xl tracking-tighter uppercase group-hover:text-brand-primary transition-colors">
+      AXIS.
+    </span>
+  </a>
+
+  <NavbarActions client:load />
+</nav>

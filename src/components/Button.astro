@@ -1,0 +1,50 @@
+---
+interface Props {
+  href?: string;
+  onClick?: string;
+  variant?: "primary" | "secondary" | "outline";
+  class?: string;
+  type?: "button" | "submit" | "reset";
+}
+
+const {
+  href,
+  onClick,
+  variant = "primary",
+  class: className = "",
+  type = "button",
+} = Astro.props;
+
+const baseStyles =
+  "group relative font-black italic tracking-widest uppercase text-xl px-10 py-5 -skew-x-15 transition-all duration-300 overflow-hidden inline-block cursor-pointer";
+
+const variants = {
+  primary: "bg-brand-primary hover:bg-white text-brand-dark",
+  secondary:
+    "bg-brand-secondary hover:bg-white text-white hover:text-brand-dark",
+  outline:
+    "bg-black/40 backdrop-blur-md border-2 border-white/20 hover:border-brand-primary text-white",
+};
+
+const innerStyles = "relative z-10 flex skew-x-15 items-center gap-3";
+---
+
+{href ? (
+  <a href={href} class={`${baseStyles} ${variants[variant]} ${className}`}>
+    {variant === "primary" && (
+      <span class="absolute inset-0 bg-brand-secondary translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
+    )}
+    <span class={innerStyles}><slot /></span>
+  </a>
+) : (
+  <button
+    type={type}
+    onclick={onClick}
+    class={`${baseStyles} ${variants[variant]} ${className}`}
+  >
+    {variant === "primary" && (
+      <span class="absolute inset-0 bg-brand-secondary translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
+    )}
+    <span class={innerStyles}><slot /></span>
+  </button>
+)}

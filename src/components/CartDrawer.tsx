@@ -1,14 +1,14 @@
 import { Trash2, X } from "lucide-react";
 import type React from "react";
-import { useCart } from "../CartContext";
+import { useStore } from "@nanostores/react";
+import { $cart, $cartTotal, removeFromCart, $isCartOpen } from "../store/cart";
 
-interface CartDrawerProps {
-  isOpen: boolean;
-  onClose: () => void;
-}
+export const CartDrawer: React.FC = () => {
+  const cart = useStore($cart);
+  const cartTotal = useStore($cartTotal);
+  const isOpen = useStore($isCartOpen);
 
-export const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen, onClose }) => {
-  const { cart, cartTotal, removeFromCart } = useCart();
+  const onClose = () => $isCartOpen.set(false);
 
   return (
     <div
