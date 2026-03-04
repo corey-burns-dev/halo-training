@@ -1,1 +1,84 @@
 @import "tailwindcss";
+
+@theme {
+  --color-brand-primary: #e1ff00;
+  --color-brand-secondary: #ff2a00;
+  --color-brand-dark: #090909;
+  --color-brand-surface: #111111;
+
+  --font-sans: "Inter", system-ui, sans-serif;
+
+  --animate-slow-pan: slow-pan 20s linear infinite alternate;
+  --animate-marquee: marquee 20s linear infinite;
+
+  @keyframes slow-pan {
+    0% { transform: scale(1.05) translateX(0); }
+    100% { transform: scale(1.05) translateX(-2%); }
+  }
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  @keyframes glitch-anim {
+    0% { clip: rect(10px, 9999px, 80px, 0); }
+    20% { clip: rect(60px, 9999px, 15px, 0); }
+    40% { clip: rect(120px, 9999px, 110px, 0); }
+    60% { clip: rect(20px, 9999px, 90px, 0); }
+    80% { clip: rect(80px, 9999px, 30px, 0); }
+    100% { clip: rect(5px, 9999px, 130px, 0); }
+  }
+  @keyframes fade-in-right {
+    from { opacity: 0; transform: translateX(-30px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes fade-in-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+@utility clip-path-hero {
+  clip-path: polygon(20% 0, 100% 0, 100% 100%, 0 100%);
+  @media (max-width: 768px) {
+    clip-path: none;
+  }
+}
+
+@utility glitch-effect {
+  position: relative;
+  &::before, &::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+  }
+  &::before {
+    left: 2px;
+    text-shadow: -2px 0 var(--color-brand-secondary);
+    clip: rect(24px, 550px, 90px, 0);
+    animation: glitch-anim 3s infinite linear alternate-reverse;
+  }
+  &::after {
+    left: -2px;
+    text-shadow: -2px 0 var(--color-brand-primary);
+    clip: rect(85px, 550px, 140px, 0);
+    animation: glitch-anim 2.5s infinite linear alternate-reverse;
+  }
+}
+
+@utility outline-text {
+  -webkit-text-stroke: 1px currentColor;
+  color: transparent;
+}
+
+@utility custom-scrollbar {
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: var(--color-brand-primary);
+  }
+}
