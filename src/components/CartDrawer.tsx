@@ -72,12 +72,8 @@ export const CartDrawer: React.FC = () => {
                       </p>
                     </div>
                     <div className="flex justify-between items-end">
-                      <span className="font-bold text-white/40 italic">
-                        QTY: {item.quantity}
-                      </span>
-                      <span className="font-black italic text-xl text-white">
-                        {item.price}
-                      </span>
+                      <span className="font-bold text-white/40 italic">QTY: {item.quantity}</span>
+                      <span className="font-black italic text-xl text-white">{item.price}</span>
                     </div>
                   </div>
                 </div>
@@ -91,9 +87,7 @@ export const CartDrawer: React.FC = () => {
                 <span className="font-black italic text-xl uppercase tracking-widest text-white/50">
                   TOTAL
                 </span>
-                <span className="font-black italic text-4xl text-brand-primary">
-                  ${cartTotal}
-                </span>
+                <span className="font-black italic text-4xl text-brand-primary">${cartTotal}</span>
               </div>
               <button
                 type="button"

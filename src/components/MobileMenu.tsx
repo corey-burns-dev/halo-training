@@ -27,14 +27,8 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ navItems }) => {
         <div className="p-8 h-full flex flex-col">
           <div className="flex justify-between items-center mb-16">
             <div className="flex items-center gap-2">
-              <Zap
-                size={32}
-                className="text-brand-primary"
-                fill="currentColor"
-              />
-              <span className="font-black italic text-3xl tracking-tighter uppercase">
-                AXIS.
-              </span>
+              <Zap size={32} className="text-brand-primary" fill="currentColor" />
+              <span className="font-black italic text-3xl tracking-tighter uppercase">AXIS.</span>
             </div>
             <button
               type="button"

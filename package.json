@@ -1,7 +1,7 @@
 {
   "name": "halo-training",
-  "private": true,
   "version": "0.0.0",
+  "private": true,
   "type": "module",
   "scripts": {
     "dev": "astro dev",
@@ -12,14 +12,15 @@
     "check": "astro check",
     "lint": "oxlint",
     "format": "oxfmt",
-    "prepare": "husky"
+    "prepare": "husky",
+    "lint:fix": "oxlint --fix . && oxfmt"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.7",
     "@astrojs/cloudflare": "^12.6.13",
     "@astrojs/react": "^5.0.0",
     "@nanostores/react": "^1.0.0",
-    "astro": "^6.0.1",
+    "astro": "^6.0.3",
     "lucide-react": "^0.577.0",
     "nanostores": "^1.1.1",
     "react": "^19.2.4",
@@ -32,14 +33,14 @@
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.4",
     "autoprefixer": "^10.4.27",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.3.3",
+    "oxfmt": "^0.37.0",
+    "oxlint": "^1.53.0",
     "postcss": "^8.5.8",
     "tailwindcss": "^4.2.1",
     "typescript": "~5.9.3",
-    "vite": "^7.3.1",
-    "oxlint": "^1.52.0",
-    "oxfmt": "^0.37.0",
-    "husky": "^9.1.7",
-    "lint-staged": "^16.3.3"
+    "vite": "^7.3.1"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [

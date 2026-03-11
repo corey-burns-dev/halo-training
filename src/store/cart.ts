@@ -16,9 +16,7 @@ export const addToCart = (product: Product) => {
   if (existingItem) {
     $cart.set(
       currentCart.map((item) =>
-        item.id === product.id
-          ? { ...item, quantity: item.quantity + 1 }
-          : item,
+        item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item,
       ),
     );
   } else {
