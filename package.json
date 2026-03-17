@@ -16,13 +16,13 @@
     "lint:fix": "oxlint --fix . && oxfmt"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.7",
-    "@astrojs/cloudflare": "^12.6.13",
+    "@astrojs/check": "^0.9.8",
+    "@astrojs/cloudflare": "^13.1.2",
     "@astrojs/react": "^5.0.0",
-    "@nanostores/react": "^1.0.0",
-    "astro": "^6.0.4",
+    "@nanostores/react": "^1.1.0",
+    "astro": "^6.0.5",
     "lucide-react": "^0.577.0",
-    "nanostores": "^1.1.1",
+    "nanostores": "^1.2.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4"
   },
@@ -31,16 +31,16 @@
     "@types/node": "^25.5.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
-    "@vitejs/plugin-react": "^5.2.0",
+    "@vitejs/plugin-react": "^6.0.1",
     "autoprefixer": "^10.4.27",
     "husky": "^9.1.7",
     "lint-staged": "^16.4.0",
-    "oxfmt": "^0.37.0",
-    "oxlint": "^1.55.0",
+    "oxfmt": "^0.41.0",
+    "oxlint": "^1.56.0",
     "postcss": "^8.5.8",
     "tailwindcss": "^4.2.1",
     "typescript": "~5.9.3",
-    "vite": "^7.3.1"
+    "vite": "^8.0.0"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
